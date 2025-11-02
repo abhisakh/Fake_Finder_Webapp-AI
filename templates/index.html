@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake Finder Game</title>
+    <title>Fake Finder Challenge</title>
+    <!-- Load Inter Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    </style>
     <!-- Load Custom Dark Theme CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -27,7 +31,7 @@
                 </select>
             </div>
 
-            <button type="submit" id="generate-button">
+            <button type="submit" id="generate-button" class="action-button">
                 Start Challenge
             </button>
         </form>
@@ -48,8 +52,8 @@
         <!-- Game Area and Results -->
         <div id="game-area" class="hidden game-area">
             <h2 class="game-topic-header">
-                Challenge: <span id="game-topic"></span>
-                (<span id="game-level"></span>)
+                Challenge: <span id="game-topic" class="text-highlight"></span>
+                (<span id="game-level" class="text-highlight"></span>)
             </h2>
             <p class="game-instruction">
                 Which statement is the FAKE?
@@ -59,7 +63,7 @@
                 <!-- Facts will be dynamically inserted here -->
             </ul>
 
-            <button id="submit-guess" class="disabled">
+            <button id="submit-guess" class="action-button disabled">
                 Submit Guess
             </button>
         </div>
@@ -75,7 +79,7 @@
         <div class="modal-content">
             <h3 id="feedback-title"></h3>
             <p id="feedback-message"></p>
-            <button id="close-modal">
+            <button id="close-modal" class="action-button">
                 Play Again
             </button>
         </div>

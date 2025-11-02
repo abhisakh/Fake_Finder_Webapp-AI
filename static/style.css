@@ -1,136 +1,186 @@
-/* --- 1. GLOBAL STYLES --- */
+/* --- 1. GLOBAL STYLES & LAYOUT --- */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #121212;
-  color: #f1f1f1;
+  font-family: 'Inter', sans-serif; /* Use the sleek Inter font */
+  background-color: #0d1117; /* GitHub Dark Theme Background */
+  color: #c9d1d9; /* Light text color for contrast */
   text-align: center;
   padding: 2rem;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Added margin reset to prevent unwanted scrolling/gaps */
   margin: 0;
 }
 
 .container {
   max-width: 700px;
-  /* Removed 'margin: auto;' here as flexbox handles centering */
-  background: #1e1e1e; /* Ensure background is solid */
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  /* Added width constraint for mobile view on flex parent */
+  background: #161b22; /* Slightly lighter container background */
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(255, 255, 255, 0.05); /* Depth effect */
   width: 90%;
+  border: 1px solid #30363d;
 }
 
-/* --- 2. TYPOGRAPHY --- */
+/* --- 2. TYPOGRAPHY & HEADERS --- */
 h1 {
-  color: #00bcd4;
-  margin-bottom: 1.5rem;
+  color: #58a6ff; /* Vibrant blue header */
+  margin-bottom: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 h2 {
-    color: #f1f1f1;
+    color: #c9d1d9;
     margin-bottom: 1rem;
+    font-weight: 700;
+    border-bottom: 1px dashed #30363d;
+    padding-bottom: 0.5rem;
+}
+
+.text-highlight {
+    color: #00E0FF; /* Neon Cyan for emphasis */
+    font-weight: 700;
+}
+
+.game-instruction {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #ff7b72; /* Subtle Red instruction text */
+    margin-bottom: 1.5rem;
 }
 
 /* --- 3. FORM ELEMENTS --- */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-align: left;
 }
 
 .form-label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    color: #8b949e;
+    font-size: 0.95em;
 }
 
 input, select {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
+  padding: 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background-color: #2a2a2a;
-  color: #f1f1f1;
+  border: 1px solid #484f58;
+  background-color: #21262d; /* Input dark background */
+  color: #c9d1d9;
   box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-button {
+input:focus, select:focus {
+    outline: none;
+    border-color: #00E0FF;
+    box-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
+}
+
+/* --- 4. ACTION BUTTONS (SUBMIT/GENERATE) --- */
+.action-button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   margin-top: 1rem;
   border-radius: 8px;
   border: none;
-  background-color: #00bcd4;
-  color: #fff;
+  background-color: #00E0FF; /* Neon Cyan */
+  color: #0d1117; /* Dark text on bright button */
   cursor: pointer;
-  transition: 0.3s;
-  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 224, 255, 0.4);
 }
 
-button:hover {
-  background-color: #0097a7;
+.action-button:hover:not(.disabled) {
+  background-color: #58a6ff;
+  box-shadow: 0 4px 20px rgba(88, 166, 255, 0.6);
+  transform: translateY(-2px);
 }
 
-/* --- 4. FACT LIST AND BUTTONS --- */
+
+/* --- 5. FACT LIST AND BUTTONS --- */
 #fact-list {
     list-style: none;
     padding: 0;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .fact-button {
   display: block;
   width: 100%;
-  margin: 10px 0;
-  padding: 15px;
-  /* Lighter, distinct background for high contrast */
-  background-color: #2a2a2a;
-  color: #f1f1f1;
-  border: 1px solid #444;
-  border-radius: 8px;
+  margin: 12px 0;
+  padding: 18px;
+  background-color: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition: all 0.2s ease-in-out;
   text-align: left;
-  /* Added position property to ensure the button sits on top of any background layers */
   position: relative;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.fact-button:hover {
-  background-color: #383838; /* Slightly darker on hover */
+.fact-button:hover:not(.disabled) {
+  background-color: #30363d;
+  transform: scale(1.01);
 }
 
-.fact-button.selected {
-  background-color: #00bcd4;
-  border-color: #f1f1f1;
-  box-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
-  color: #121212; /* Ensure black text on cyan background for max contrast */
+.fact-button.selected:not(.disabled) {
+  background-color: #00E0FF;
+  border-color: #00E0FF;
+  box-shadow: 0 0 15px rgba(0, 224, 255, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #0d1117;
+  transform: scale(1.0);
 }
 
-.correct-result {
-  color: #4caf50;
-  font-weight: bold;
+/* Result States */
+.fact-button.correct-result {
+  background-color: #238636; /* GitHub Green */
+  border-color: #3fb950;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(35, 134, 54, 0.7);
+  font-weight: 700;
 }
 
-.wrong-result {
-  color: #f44336;
-  font-weight: bold;
+.fact-button.wrong-result {
+  background-color: #7d2a2a; /* Custom Dark Red */
+  border-color: #f44336;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+  font-weight: 700;
 }
 
-/* --- 5. LOADING ANIMATION --- */
+/* --- 6. LOADING ANIMATION & ERROR BOX --- */
 .loading {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    padding: 1rem;
-    background: #2a2a2a;
-    border-radius: 8px;
-    border: 1px solid #00bcd4;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #21262d;
+    border-radius: 10px;
+    border: 1px solid #00E0FF;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+.loading-message {
+    font-weight: 700;
+    color: #00E0FF;
+    margin-bottom: 0.75rem;
+}
+.loading-subtext {
+    color: #8b949e;
+    font-size: 0.9em;
 }
 
 .loading-dots {
@@ -138,10 +188,10 @@ button:hover {
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    background-color: #00bcd4;
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+    background-color: #00E0FF;
     border-radius: 50%;
     display: inline-block;
     animation: dot-flicker 1.4s infinite ease-in-out both;
@@ -153,53 +203,76 @@ button:hover {
 @keyframes dot-flicker {
     0%, 80%, 100% {
         transform: scale(0);
+        opacity: 0.5;
     }
     40% {
         transform: scale(1.0);
+        opacity: 1;
     }
 }
 
-/* --- 6. GENERAL UTILITIES --- */
+.error-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #2d1010;
+    border: 1px solid #ff7b72;
+    color: #ff7b72;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(255, 123, 114, 0.3);
+}
+.error-text-content {
+    font-weight: 600;
+}
+
+/* --- 7. GENERAL UTILITIES --- */
 .hidden {
     display: none !important;
 }
 
 .disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    opacity: 0.4;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
 }
 
-/* --- 7. MODAL STYLING --- */
+/* --- 8. MODAL STYLING --- */
 #feedback-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100; /* Ensure modal is on top of everything */
+    z-index: 100;
 }
 
 .modal-content {
-    background-color: #1e1e1e;
+    background-color: #161b22;
     padding: 30px;
     border-radius: 10px;
     text-align: center;
     width: 90%;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-    border: 1px solid #00bcd4;
+    max-width: 450px;
+    box-shadow: 0 0 30px rgba(0, 224, 255, 0.4);
+    border: 2px solid #00E0FF;
 }
 
 .modal-content h3 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #00E0FF;
+    font-weight: 800;
+}
+
+.modal-content p {
+    color: #c9d1d9;
+    font-size: 1.1em;
 }
 
 .modal-content button {
-    width: auto;
-    padding: 10px 20px;
-    margin-top: 20px;
+    margin-top: 25px;
 }

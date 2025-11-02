@@ -65,6 +65,11 @@ function renderFacts(facts) {
  * @param {HTMLElement} clickedButton - The button element clicked.
  */
 function handleFactSelection(index, clickedButton) {
+    // Check if the game is over (buttons are disabled)
+    if (clickedButton.classList.contains('disabled')) {
+        return;
+    }
+
     // Deselect any currently selected button
     const previouslySelected = factList.querySelector('.fact-button.selected');
     if (previouslySelected) {
@@ -122,11 +127,13 @@ function handleSubmitGuess() {
     if (isCorrect) {
         title = "🥳 Correct!";
         message = "You successfully identified the fake statement. Great work!";
+        selectedButton.classList.remove('selected');
         selectedButton.classList.add('correct-result');
     } else {
         title = "😔 Incorrect";
         // Highlight the user's wrong guess
         message = "That was a true statement. Better luck next time!";
+        selectedButton.classList.remove('selected');
         selectedButton.classList.add('wrong-result');
 
         // Highlight the correct fake statement
