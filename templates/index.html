@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Finder Game</title>
+    <!-- Load Custom Dark Theme CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🕵️‍♂️ Fake Finder Challenge</h1>
+
+        <!-- Configuration Form -->
+        <form id="config-form" class="form">
+            <div class="form-group">
+                <label for="topic" class="form-label">Topic (e.g., Photosynthesis, Democracy):</label>
+                <input type="text" id="topic" required placeholder="Enter a Wikipedia topic...">
+            </div>
+
+            <div class="form-group">
+                <label for="level" class="form-label">Difficulty Level:</label>
+                <select id="level">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+
+            <button type="submit" id="generate-button">
+                Start Challenge
+            </button>
+        </form>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading hidden">
+            <div class="loading-message">
+                Generating Facts
+            </div>
+            <div class="loading-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <p class="loading-subtext">Retrieving article and challenging Gemini...</p>
+        </div>
+
+        <!-- Game Area and Results -->
+        <div id="game-area" class="hidden game-area">
+            <h2 class="game-topic-header">
+                Challenge: <span id="game-topic"></span>
+                (<span id="game-level"></span>)
+            </h2>
+            <p class="game-instruction">
+                Which statement is the FAKE?
+            </p>
+
+            <ul id="fact-list">
+                <!-- Facts will be dynamically inserted here -->
+            </ul>
+
+            <button id="submit-guess" class="disabled">
+                Submit Guess
+            </button>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden error-box" role="alert">
+            <p id="error-text" class="error-text-content"></p>
+        </div>
+    </div>
+
+    <!-- Feedback Modal (Custom Alert) -->
+    <div id="feedback-modal" class="hidden">
+        <div class="modal-content">
+            <h3 id="feedback-title"></h3>
+            <p id="feedback-message"></p>
+            <button id="close-modal">
+                Play Again
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
